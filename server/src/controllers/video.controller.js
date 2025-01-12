@@ -4,30 +4,73 @@ import { ApiResponse } from "../utils/ApiResponse.js";
 import { asyncHandler } from "../utils/asyncHandler.js";
 import { deleteFromCloudinary, uploadOnCloudinary } from "../utils/cloudinary.js";
 import { Video } from "../models/video.model.js";
+import mongoose from "mongoose";
 
 const getAllVideos = asyncHandler(async (req, res) => {
-    const { page = 1, limit = 10, query, sortBy, sortType, userId } = req.query
-    //TODO: get all videos based on query, sort, pagination
-    let filter = {}
+    // Destructure query parameters from the request
+    const { page = 1, limit = 10, query, sortBy, sortType, userId } = req.query;
 
-    const videos = await Video.find(filter).sort(sortType || 'asc').skip((page - 1) * limit).limit(limit).populate('owner', 'username fullName');
-    const total = await Video.countDocuments(filter);
-    return res
-        .status(200)
-        .json(
-            new ApiResponse(
-                200,
-                {
-                    videos,
-                    total,
-                    page,
-                    limit
-                },
-                'Videos retrieved successfully'
-            )
-        );
+    // Calculate the number of documents to skip for pagination
+    const skip = (page - 1) * limit;
 
-})
+    // Initialize an empty filter object to build query conditions
+    const filter = {};
+
+    // Add a filter for videos owned by a specific user (if userId is provided)
+    if (userId) {
+        filter.owner = new mongoose.Types.ObjectId(userId); // Convert userId to MongoDB ObjectId
+    }
+
+    // Add a search filter for videos matching the query in title or description (if query is provided)
+    if (query) {
+        filter.$or = [
+            { title: { $regex: query, $options: 'i' } }, // Case-insensitive regex search on title
+            { description: { $regex: query, $options: 'i' } }, // Case-insensitive regex search on description
+        ];
+    }
+
+    // Build the aggregation pipeline to process the query
+    const pipeline = [
+        // Stage 1: Match documents based on the filter conditions
+        {
+            $match: filter,
+        },
+        // Stage 2: Sort documents dynamically based on sortBy and sortType
+        {
+            $sort: {
+                [sortBy]: sortType === 'asc' ? 1 : -1, // 1 for ascending, -1 for descending
+            },
+        },
+        // Stage 3: Skip documents for pagination
+        {
+            $skip: skip,
+        },
+        // Stage 4: Limit the number of documents returned per page
+        {
+            $limit: parseInt(limit),
+        },
+    ];
+
+    // Execute the aggregation pipeline to retrieve videos
+    const videos = await Video.aggregate(pipeline);
+
+    // Get the total count of matching documents for pagination metadata
+    const totalCount = await Video.countDocuments(filter);
+
+    // Return a success response with the retrieved videos and pagination details
+    return res.status(200).json(
+        new ApiResponse(
+            200, // HTTP status code
+            {
+                data: videos, // Retrieved videos
+                totalCount: totalCount, // Total number of matching documents
+                skip: skip, // Number of documents skipped
+                limit: limit, // Number of documents per page
+            },
+            "Videos retrieved successfully" // Success message
+        )
+    );
+});
 
 // Define the publishAVideo function to handle video uploads
 const publishAVideo = asyncHandler(async (req, res) => {
@@ -74,13 +117,15 @@ const publishAVideo = asyncHandler(async (req, res) => {
     await video.save();
 
     // Return a successful response with the video details
-    return res.status(201).json(
-        new ApiResponse(
-            201,
-            video,
-            'Video uploaded successfully'
-        )
-    );
+    return res
+        .status(201)
+        .json(
+            new ApiResponse(
+                201,
+                video,
+                'Video uploaded successfully'
+            )
+        );
 });
 
 const getVideoById = asyncHandler(async (req, res) => {
