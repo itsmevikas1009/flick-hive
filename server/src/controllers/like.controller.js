@@ -30,11 +30,13 @@ const toggleVideoLike = asyncHandler(async (req, res) => {
         await newLike.save();
         return res
             .status(201)
-            .json(new ApiResponse(
-                201,
-                "Video liked",
-                newLike
-            ));
+            .json(
+                new ApiResponse(
+                    201,
+                    "Video liked",
+                    newLike
+                )
+            );
     }
 
     // If already liked, remove the like
@@ -42,11 +44,13 @@ const toggleVideoLike = asyncHandler(async (req, res) => {
 
     return res
         .status(200)
-        .json(new ApiResponse(
-            200,
-            null,
-            "Video like toggled successfully"
-        ));
+        .json(
+            new ApiResponse(
+                200,
+                null,
+                "Video like toggled successfully"
+            )
+        );
 });
 
 // Function to toggle like on a comment
@@ -72,11 +76,13 @@ const toggleCommentLike = asyncHandler(async (req, res) => {
         await newLike.save();
         return res
             .status(201)
-            .json(new ApiResponse(
-                201,
-                "Comment liked",
-                newLike
-            ));
+            .json(
+                new ApiResponse(
+                    201,
+                    "Comment liked",
+                    newLike
+                )
+            );
     }
 
     // If already liked, remove the like
@@ -84,11 +90,13 @@ const toggleCommentLike = asyncHandler(async (req, res) => {
 
     return res
         .status(200)
-        .json(new ApiResponse(
-            200,
-            null,
-            "Comment like toggled successfully"
-        ));
+        .json(
+            new ApiResponse(
+                200,
+                null,
+                "Comment like toggled successfully"
+            )
+        );
 });
 
 // Function to toggle like on a tweet
@@ -114,11 +122,13 @@ const toggleTweetLike = asyncHandler(async (req, res) => {
         await newLike.save();
         return res
             .status(201)
-            .json(new ApiResponse(
-                201,
-                newLike,
-                "Tweet liked"
-            ));
+            .json(
+                new ApiResponse(
+                    201,
+                    newLike,
+                    "Tweet liked"
+                )
+            );
     }
 
     // If already liked, remove the like
@@ -126,11 +136,13 @@ const toggleTweetLike = asyncHandler(async (req, res) => {
 
     return res
         .status(200)
-        .json(new ApiResponse(
-            200,
-            null,
-            "Tweet like toggled successfully"
-        ));
+        .json(
+            new ApiResponse(
+                200,
+                null,
+                "Tweet like toggled successfully"
+            )
+        );
 });
 
 // Function to get all liked videos of the user
@@ -165,11 +177,13 @@ const getLikedVideos = asyncHandler(async (req, res) => {
 
     return res
         .status(200)
-        .json(new ApiResponse(
-            200,
-            likedVideos,
-            "Liked videos retrieved successfully"
-        ));
+        .json(
+            new ApiResponse(
+                200,
+                likedVideos,
+                "Liked videos retrieved successfully"
+            )
+        );
 });
 
 // Export the functions
