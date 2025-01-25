@@ -1,20 +1,24 @@
-import mongoose, { isValidObjectId } from "mongoose"
-import { User } from "../models/user.model.js"
-import { Subscription } from "../models/subscription.model.js"
-import { ApiError } from "../utils/ApiError.js"
-import { ApiResponse } from "../utils/ApiResponse.js"
-import { asyncHandler } from "../utils/asyncHandler.js"
+import mongoose, { isValidObjectId } from "mongoose";
+import { User } from "../models/user.model.js";
+import { Subscription } from "../models/subscription.model.js";
+import { ApiError } from "../utils/ApiError.js";
+import { ApiResponse } from "../utils/ApiResponse.js";
+import { asyncHandler } from "../utils/asyncHandler.js";
 
-
+// Function to toggle subscription to a channel
 const toggleSubscription = asyncHandler(async (req, res) => {
     const { channelId } = req.params;
+
+    // Find the user and the channel by their IDs
     const user = await User.findById(req.user._id);
     const channel = await User.findById(channelId);
 
+    // Check if the user or channel does not exist
     if (!user || !channel) {
         throw new ApiError(404, 'User or Channel not found');
     }
 
+    // Check if the user is trying to subscribe to themselves
     if (user._id.toString() === channel._id.toString()) {
         throw new ApiError(400, 'Cannot subscribe to self');
     }
@@ -22,41 +26,50 @@ const toggleSubscription = asyncHandler(async (req, res) => {
     // Check if the user is already subscribed to the channel
     const subscription = await Subscription.findOne({ subscriber: user._id, channel: channel._id });
     if (!subscription) {
-        // If not, create a new subscription
+        // If not subscribed, create a new subscription
         const newSubscription = new Subscription({ subscriber: user._id, channel: channel._id });
         await newSubscription.save();
         return res
             .status(201)
-            .json(new ApiResponse(
-                201,
-                newSubscription,
-                "Subscription created successfully",
-            ));
+            .json(
+                new ApiResponse(
+                    201,
+                    newSubscription,
+                    "Subscription created successfully",
+                )
+            );
     }
 
+    // If already subscribed, delete the subscription
     const deleteSubscription = await Subscription.findByIdAndDelete(subscription._id);
     if (!deleteSubscription) {
         throw new ApiError(404, 'Subscription not found');
     }
 
+    // Return a successful response indicating the subscription was deleted
     return res
         .status(200)
-        .json(new ApiResponse(
-            200,
-            null,
-            "Subscription deleted successfully",
-        ));
-})
+        .json(
+            new ApiResponse(
+                200,
+                null,
+                "Subscription deleted successfully",
+            )
+        );
+});
 
-// controller to return subscriber list of a channel
+// Function to return the subscriber list of a channel
 const getUserChannelSubscribers = asyncHandler(async (req, res) => {
     const { subscriberId } = req.params;
+
+    // Find the channel by ID
     const channel = await User.findById(subscriberId);
 
     if (!channel) {
         return new ApiError(404, "Channel not found");
     }
 
+    // Aggregate subscribers for the channel
     const subscribers = await Subscription.aggregate([
         {
             $match: {
@@ -85,22 +98,26 @@ const getUserChannelSubscribers = asyncHandler(async (req, res) => {
         }
     ]);
 
+    // Return a successful response with the list of subscribers
     return res
         .status(200)
-        .json(new ApiResponse(
-            200,
-            subscribers,
-            "Subscribers list",
-        ));
-})
+        .json(
+            new ApiResponse(
+                200,
+                subscribers,
+                "Subscribers list",
+            ))
+        ;
+});
 
-// controller to return channel list to which user has subscribed
+// Function to return the list of channels to which a user has subscribed
 const getSubscribedChannels = asyncHandler(async (req, res) => {
     const { subscriberId } = req.params;
-})
+});
 
+// Export the functions related to subscription management
 export {
     toggleSubscription,
     getUserChannelSubscribers,
     getSubscribedChannels
-}
+};
