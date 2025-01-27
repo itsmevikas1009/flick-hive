@@ -31,31 +31,12 @@ const toggleSubscription = asyncHandler(async (req, res) => {
         await newSubscription.save();
         return res
             .status(201)
-            .json(
-                new ApiResponse(
-                    201,
-                    newSubscription,
-                    "Subscription created successfully",
-                )
-            );
+            .json(new ApiResponse(201, newSubscription, "Subscription created successfully"));
     }
 
     // If already subscribed, delete the subscription
-    const deleteSubscription = await Subscription.findByIdAndDelete(subscription._id);
-    if (!deleteSubscription) {
-        throw new ApiError(404, 'Subscription not found');
-    }
-
-    // Return a successful response indicating the subscription was deleted
-    return res
-        .status(200)
-        .json(
-            new ApiResponse(
-                200,
-                null,
-                "Subscription deleted successfully",
-            )
-        );
+    await Subscription.findByIdAndDelete(subscription._id);
+    return res.status(204).send();
 });
 
 // Function to return the subscriber list of a channel
@@ -66,7 +47,7 @@ const getUserChannelSubscribers = asyncHandler(async (req, res) => {
     const channel = await User.findById(subscriberId);
 
     if (!channel) {
-        return new ApiError(404, "Channel not found");
+        throw new ApiError(404, "Channel not found");
     }
 
     // Aggregate subscribers for the channel
@@ -101,13 +82,7 @@ const getUserChannelSubscribers = asyncHandler(async (req, res) => {
     // Return a successful response with the list of subscribers
     return res
         .status(200)
-        .json(
-            new ApiResponse(
-                200,
-                subscribers,
-                "Subscribers list",
-            ))
-        ;
+        .json(new ApiResponse(200, subscribers, "Subscribers list"));
 });
 
 // Function to return the list of channels to which a user has subscribed
