@@ -1,11 +1,11 @@
 // Import necessary modules and utilities
-import { User } from "../models/user.model.js"; // Import the User model for database operations related to user data.
-import { asyncHandler } from "../utils/asyncHandler.js"; // Import a utility function to handle asynchronous requests and errors.
-import { ApiError } from "../utils/ApiError.js"; // Import a custom error handling class for API errors.
-import { deleteFromCloudinary, uploadOnCloudinary } from "../utils/cloudinary.js"; // Import a utility function for uploading images to Cloudinary.
-import { ApiResponse } from "../utils/ApiResponse.js"; // Import a class for standardizing API responses.
-import jwt from "jsonwebtoken"; // Import the jsonwebtoken library for token management.
-import mongoose from "mongoose"; // Import the mongoose library for MongoDB operations.
+import { User } from "../models/user.model.js";
+import { asyncHandler } from "../utils/asyncHandler.js";
+import { ApiError } from "../utils/ApiError.js";
+import { deleteFromCloudinary, uploadOnCloudinary } from "../utils/cloudinary.js";
+import { ApiResponse } from "../utils/ApiResponse.js";
+import jwt from "jsonwebtoken";
+import mongoose from "mongoose";
 
 const options = {
     httpOnly: true, // Set the cookie to be accessible only by the web server.
