@@ -2,18 +2,11 @@
 import { ApiResponse } from "../utils/ApiResponse.js";
 import { asyncHandler } from "../utils/asyncHandler.js";
 
-// Function to perform a health check
+// Enhanced healthCheck function
 const healthCheck = asyncHandler(async (req, res) => {
-    // Return a successful response with status 200 and message 'OK'
-    return res
-        .status(200)
-        .json(
-            new ApiResponse(
-                200,
-                null,
-                'OK'
-            )
-        );
+    return res.status(200).json(
+        new ApiResponse(200, null, 'Service is up and running')
+    );
 });
 
 // Export the healthCheck function
