@@ -1,3 +1,4 @@
+// Import necessary modules and utilities
 import { Tweet } from "../models/tweet.model.js";
 import { ApiError } from "../utils/ApiError.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
