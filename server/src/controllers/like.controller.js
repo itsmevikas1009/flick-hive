@@ -30,27 +30,12 @@ const toggleVideoLike = asyncHandler(async (req, res) => {
         await newLike.save();
         return res
             .status(201)
-            .json(
-                new ApiResponse(
-                    201,
-                    "Video liked",
-                    newLike
-                )
-            );
+            .json(new ApiResponse(201, newLike, "Video liked"));
     }
 
     // If already liked, remove the like
     await Like.findByIdAndDelete(like._id);
-
-    return res
-        .status(200)
-        .json(
-            new ApiResponse(
-                200,
-                null,
-                "Video like toggled successfully"
-            )
-        );
+    return res.status(204).send();
 });
 
 // Function to toggle like on a comment
@@ -76,27 +61,12 @@ const toggleCommentLike = asyncHandler(async (req, res) => {
         await newLike.save();
         return res
             .status(201)
-            .json(
-                new ApiResponse(
-                    201,
-                    "Comment liked",
-                    newLike
-                )
-            );
+            .json(new ApiResponse(201, newLike, "Comment liked"));
     }
 
     // If already liked, remove the like
     await Like.findByIdAndDelete(like._id);
-
-    return res
-        .status(200)
-        .json(
-            new ApiResponse(
-                200,
-                null,
-                "Comment like toggled successfully"
-            )
-        );
+    return res.status(204).send();
 });
 
 // Function to toggle like on a tweet
@@ -122,27 +92,12 @@ const toggleTweetLike = asyncHandler(async (req, res) => {
         await newLike.save();
         return res
             .status(201)
-            .json(
-                new ApiResponse(
-                    201,
-                    newLike,
-                    "Tweet liked"
-                )
-            );
+            .json(new ApiResponse(201, newLike, "Tweet liked"));
     }
 
     // If already liked, remove the like
     await Like.findByIdAndDelete(like._id);
-
-    return res
-        .status(200)
-        .json(
-            new ApiResponse(
-                200,
-                null,
-                "Tweet like toggled successfully"
-            )
-        );
+    return res.status(204).send();
 });
 
 // Function to get all liked videos of the user
@@ -168,22 +123,13 @@ const getLikedVideos = asyncHandler(async (req, res) => {
     ]);
 
     // Check if there are no liked videos
-    if (!likedVideos) {
-        throw new ApiError(
-            404,
-            "No liked videos found",
-        );
+    if (!likedVideos.length) {
+        throw new ApiError(404, "No liked videos found");
     }
 
     return res
         .status(200)
-        .json(
-            new ApiResponse(
-                200,
-                likedVideos,
-                "Liked videos retrieved successfully"
-            )
-        );
+        .json(new ApiResponse(200, likedVideos, "Liked videos retrieved successfully"));
 });
 
 // Export the functions
