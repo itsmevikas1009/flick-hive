@@ -41,10 +41,10 @@ const toggleSubscription = asyncHandler(async (req, res) => {
 
 // Function to return the subscriber list of a channel
 const getUserChannelSubscribers = asyncHandler(async (req, res) => {
-    const { subscriberId } = req.params;
+    const { channelId } = req.params;
 
     // Find the channel by ID
-    const channel = await User.findById(subscriberId);
+    const channel = await User.findById(channelId);
 
     if (!channel) {
         throw new ApiError(404, "Channel not found");
@@ -88,6 +88,46 @@ const getUserChannelSubscribers = asyncHandler(async (req, res) => {
 // Function to return the list of channels to which a user has subscribed
 const getSubscribedChannels = asyncHandler(async (req, res) => {
     const { subscriberId } = req.params;
+
+    // Find the channel by ID
+    const subscriber = await User.findById(subscriberId);
+
+    if (!subscriber) {
+        throw new ApiError(404, "Subscriber not found");
+    }
+
+    const channelList = await Subscription.aggregate([
+        {
+            $match: {
+                subscriber: subscriber._id
+            }
+        },
+        {
+            $lookup: {
+                from: 'users',
+                localField: 'channel',
+                foreignField: '_id',
+                as: 'channel'
+            }
+        },
+        {
+            $unwind: "$channel"
+        },
+        {
+            $project: {
+                channel: "$channel._id",
+                channelName: "$channel.fullName",
+                channelEmail: "$channel.email",
+                channelUsername: "$channel.username",
+                channelAvatar: "$channel.avatar",
+            }
+        }
+    ]);
+
+    // Return a successful response with the list of subscribers
+    return res
+        .status(200)
+        .json(new ApiResponse(200, channelList, "Channel list"));
 });
 
 // Export the functions related to subscription management
