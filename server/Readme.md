@@ -15,20 +15,20 @@ FlickHive is a backend service for a video sharing platform. It provides APIs fo
 
 1. Clone the repository:
    ```sh
-   git clone https://github.com/your-username/flickhive.git
-   cd flickhive
+      git clone https://github.com/your-username/flickhive.git
+      cd flickhive
    ```
 2. Install dependencies:
    ```sh
-   npm install
+      npm install
    ```
 3. Create a .env file and add your environment variables:
    ```sh
-   touch .env
+      touch .env
    ```
 4. Start the server:
    ```sh
-   npm run dev
+      npm run dev
    ```
 
 ## Environment Variables
