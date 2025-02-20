@@ -1,0 +1,1069 @@
+{
+	"info": {
+		"_postman_id": "669403d6-5219-4eb1-91be-377a18b0cd0a",
+		"name": "FlickHive",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "40649189"
+	},
+	"item": [
+		{
+			"name": "users",
+			"item": [
+				{
+					"name": "register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "fullName",
+									"value": "Developer Vikas",
+									"type": "text"
+								},
+								{
+									"key": "username",
+									"value": "developervikasdemo2",
+									"type": "text"
+								},
+								{
+									"key": "avatar",
+									"type": "file",
+									"src": "/C:/Users/Devil/Pictures/IMG_20240513_103443_935.jpg"
+								},
+								{
+									"key": "coverImage",
+									"type": "file",
+									"src": "/C:/Users/Devil/Pictures/Screenshots/Screenshot 2023-08-12 083846.png"
+								},
+								{
+									"key": "email",
+									"value": "developervikasdemo2@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "Developer@123",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{users}}/register",
+							"host": [
+								"{{users}}"
+							],
+							"path": [
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"developervikas@gmail.com\",\r\n    \"password\": \"developervikas@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{users}}/login",
+							"host": [
+								"{{users}}"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "logout",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{users}}/logout",
+							"host": [
+								"{{users}}"
+							],
+							"path": [
+								"logout"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "change-password",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"oldPassword\":\"developervikasdemo@gmail.com\",\r\n    \"newPassword\":\"developervikas@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{users}}/change-password",
+							"host": [
+								"{{users}}"
+							],
+							"path": [
+								"change-password"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "refresh-token",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{users}}/refresh-token",
+							"host": [
+								"{{users}}"
+							],
+							"path": [
+								"refresh-token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "curr-user",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{users}}/curr-user",
+							"host": [
+								"{{users}}"
+							],
+							"path": [
+								"curr-user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update-account-details",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"fullName\":\"Vikas Chaurasia\",\r\n    \"email\":\"developervikasdemo@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{users}}/update-account-details",
+							"host": [
+								"{{users}}"
+							],
+							"path": [
+								"update-account-details"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update-avatar",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "avatar",
+									"type": "file",
+									"src": "/C:/Users/Devil/Pictures/Screenshots/Screenshot 2023-08-12 084125.png"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{users}}/update-avatar",
+							"host": [
+								"{{users}}"
+							],
+							"path": [
+								"update-avatar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update-cover-image",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "coverImage",
+									"type": "file",
+									"src": "/C:/Users/Devil/Pictures/Screenshots/Screenshot 2024-02-11 003203.png"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{users}}/update-cover-image",
+							"host": [
+								"{{users}}"
+							],
+							"path": [
+								"update-cover-image"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "channel-profile",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{users}}/c/developervikasdemo",
+							"host": [
+								"{{users}}"
+							],
+							"path": [
+								"c",
+								"developervikasdemo"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "watch-history",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{users}}/watch-history",
+							"host": [
+								"{{users}}"
+							],
+							"path": [
+								"watch-history"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "videos",
+			"item": [
+				{
+					"name": "getAllVideos",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{videos}}?query=ek mulakat&userId=6778c2fcc191e30df82397b5",
+							"host": [
+								"{{videos}}"
+							],
+							"query": [
+								{
+									"key": "query",
+									"value": "ek mulakat"
+								},
+								{
+									"key": "userId",
+									"value": "6778c2fcc191e30df82397b5"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "publishAVideo",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "Ek Mulakat",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Video Song",
+									"type": "text"
+								},
+								{
+									"key": "videoFile",
+									"type": "file",
+									"src": "/C:/Users/Devil/Videos/How to Install.mkv"
+								},
+								{
+									"key": "thumbnail",
+									"type": "file",
+									"src": "/C:/Users/Devil/Pictures/Screenshots/Screenshot 2024-12-12 213014.png"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{videos}}",
+							"host": [
+								"{{videos}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getVideoById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{videos}}/6778d0c3b1bf0753df3bf9e1",
+							"host": [
+								"{{videos}}"
+							],
+							"path": [
+								"6778d0c3b1bf0753df3bf9e1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateVideo",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "Ek Mulakat Jaruri",
+									"type": "text"
+								},
+								{
+									"key": "thumbnail",
+									"type": "file",
+									"src": "/C:/Users/Devil/Pictures/Screenshots/Screenshot 2024-10-07 155609.png",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{videos}}/6778ef910098132730b2f067",
+							"host": [
+								"{{videos}}"
+							],
+							"path": [
+								"6778ef910098132730b2f067"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteVideo",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "Ek Mulakat Jaruri",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{videos}}/6778f86545385f2fd6b901ff",
+							"host": [
+								"{{videos}}"
+							],
+							"path": [
+								"6778f86545385f2fd6b901ff"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "togglePublishStatus",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "{{videos}}/toggle/publish/6778ff31763e94ae28e40431",
+							"host": [
+								"{{videos}}"
+							],
+							"path": [
+								"toggle",
+								"publish",
+								"6778ff31763e94ae28e40431"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "healthCheck",
+			"item": [
+				{
+					"name": "New Request",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{healthCheck}}",
+							"host": [
+								"{{healthCheck}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "tweets",
+			"item": [
+				{
+					"name": "createTweet",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"content\":\"Hello World\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{tweets}}",
+							"host": [
+								"{{tweets}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getUserTweets",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{tweets}}/user/6778c2fcc191e30df82397b5",
+							"host": [
+								"{{tweets}}"
+							],
+							"path": [
+								"user",
+								"6778c2fcc191e30df82397b5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateTweet",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"content\":\"Hello Duniya\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{tweets}}/677a14fb1d973a35f49759ad",
+							"host": [
+								"{{tweets}}"
+							],
+							"path": [
+								"677a14fb1d973a35f49759ad"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteTweet",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{tweets}}/677a14fb1d973a35f49759ad",
+							"host": [
+								"{{tweets}}"
+							],
+							"path": [
+								"677a14fb1d973a35f49759ad"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "dashboard",
+			"item": [
+				{
+					"name": "getChannelStats",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{dashboard}}/stats",
+							"host": [
+								"{{dashboard}}"
+							],
+							"path": [
+								"stats"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getChannelVideos",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{dashboard}}/videos",
+							"host": [
+								"{{dashboard}}"
+							],
+							"path": [
+								"videos"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "comments",
+			"item": [
+				{
+					"name": "getVideoComments",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{comments}}/6778fb97b254f37aa3c20057",
+							"host": [
+								"{{comments}}"
+							],
+							"path": [
+								"6778fb97b254f37aa3c20057"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "addComment",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"content\": \"Nice Video\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{comments}}/677e106e3bdecda248988834",
+							"host": [
+								"{{comments}}"
+							],
+							"path": [
+								"677e106e3bdecda248988834"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateComment",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"content\": \"Nice Video\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{comments}}/c/677e1143c59140c59d1bcb55",
+							"host": [
+								"{{comments}}"
+							],
+							"path": [
+								"c",
+								"677e1143c59140c59d1bcb55"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteComment",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{comments}}/c/677e1143c59140c59d1bcb55",
+							"host": [
+								"{{comments}}"
+							],
+							"path": [
+								"c",
+								"677e1143c59140c59d1bcb55"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "playlist",
+			"item": [
+				{
+					"name": "createPlaylist",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Sad Song\",\r\n    \"description\": \"Playlist of Sad Songs\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{playlist}}/",
+							"host": [
+								"{{playlist}}"
+							],
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getUserPlaylist",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{playlist}}/user/6778c2fcc191e30df82397b5",
+							"host": [
+								"{{playlist}}"
+							],
+							"path": [
+								"user",
+								"6778c2fcc191e30df82397b5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getPlaylistById",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{playlist}}/677fe9eb04362e4362915a3f",
+							"host": [
+								"{{playlist}}"
+							],
+							"path": [
+								"677fe9eb04362e4362915a3f"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updatePlaylistById",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Old Songs\",\r\n    \"description\": \"Playlist of Old Songs.\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{playlist}}/677fde23b3d41377f510ae73",
+							"host": [
+								"{{playlist}}"
+							],
+							"path": [
+								"677fde23b3d41377f510ae73"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deletePlaylistById",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Old Songs\",\r\n    \"description\": \"Playlist of Old Songs.\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{playlist}}/677fde23b3d41377f510ae73",
+							"host": [
+								"{{playlist}}"
+							],
+							"path": [
+								"677fde23b3d41377f510ae73"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "addVideoToPlaylist",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Old Songs\",\r\n    \"description\": \"Playlist of Old Songs.\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{playlist}}/add/6778fb97b254f37aa3c20057/677fe9eb04362e4362915a3f",
+							"host": [
+								"{{playlist}}"
+							],
+							"path": [
+								"add",
+								"6778fb97b254f37aa3c20057",
+								"677fe9eb04362e4362915a3f"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "removeVideoFromPlaylist",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Old Songs\",\r\n    \"description\": \"Playlist of Old Songs.\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{playlist}}/remove/6778fb97b254f37aa3c20057/677fe9eb04362e4362915a3f",
+							"host": [
+								"{{playlist}}"
+							],
+							"path": [
+								"remove",
+								"6778fb97b254f37aa3c20057",
+								"677fe9eb04362e4362915a3f"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "subscriptions",
+			"item": [
+				{
+					"name": "toggleSubscription",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{subscriptions}}/c/67783d6f304e519e60fe066e",
+							"host": [
+								"{{subscriptions}}"
+							],
+							"path": [
+								"c",
+								"67783d6f304e519e60fe066e"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getUserChannelSubscribers",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{subscriptions}}/u/6778c2fcc191e30df82397b5",
+							"host": [
+								"{{subscriptions}}"
+							],
+							"path": [
+								"u",
+								"6778c2fcc191e30df82397b5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getSubscribedChannels",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{subscriptions}}/c/6783c4a9352aea96107ab801",
+							"host": [
+								"{{subscriptions}}"
+							],
+							"path": [
+								"c",
+								"6783c4a9352aea96107ab801"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "likes",
+			"item": [
+				{
+					"name": "toggleVideoLike",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{likes}}/toggle/v/6778ff31763e94ae28e40431",
+							"host": [
+								"{{likes}}"
+							],
+							"path": [
+								"toggle",
+								"v",
+								"6778ff31763e94ae28e40431"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "toggleCommentLike",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{likes}}/toggle/c/6787afbcc624a6f7264dc8f2",
+							"host": [
+								"{{likes}}"
+							],
+							"path": [
+								"toggle",
+								"c",
+								"6787afbcc624a6f7264dc8f2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getLikedVideos",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{likes}}/videos",
+							"host": [
+								"{{likes}}"
+							],
+							"path": [
+								"videos"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
