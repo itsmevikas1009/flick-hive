@@ -8,6 +8,7 @@ FlickHive is a backend service for a video sharing platform. It provides APIs fo
 
 - [Setup](#setup)
 - [Environment Variables](#environment-variables)
+- [Testing](#testing)
 - [Project Structure](#project-structure)
 - [API Endpoints](#api-endpoints)
 
@@ -15,8 +16,8 @@ FlickHive is a backend service for a video sharing platform. It provides APIs fo
 
 1. Clone the repository:
    ```sh
-      git clone https://github.com/your-username/flickhive.git
-      cd flickhive
+      git clone https://github.com/itsmevikas1009/flick-hive.git
+      cd flick-hive/server
    ```
 2. Install dependencies:
    ```sh
@@ -47,6 +48,16 @@ REFRESH_TOKEN_SECRET=your_refresh_token_secret
 REFRESH_TOKEN_EXPIRY=7d
 CORS_ORIGIN=your_cors_origin
 ```
+
+## Testing
+
+To test the API endpoints, you can use the Postman collection provided in the `Postman API Testing` folder.
+
+1. Open Postman.
+2. Import the collection file `FlickHive.postman_collection.json` from the `Postman API Testing` folder.
+3. Import the environment file `FlickHive.postman_environment.json` from the `Postman API Testing` folder.
+4. Select the `FlickHive` environment in Postman.
+5. Run the requests in the collection to test the various API endpoints.
 
 ## Project Structure
 
